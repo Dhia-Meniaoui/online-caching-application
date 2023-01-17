@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notifications
+  labels:
+    app: notifications
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: notifications
+      labels:
+        app: notifications
+    spec:
+      containers:
+        - name: notifications
+          image: kastourik12/notification:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+           - containerPort: 8084
+          envFrom:
+            - configMapRef:
+                name: notifications-config
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: notifications

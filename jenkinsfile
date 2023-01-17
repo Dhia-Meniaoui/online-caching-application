@@ -1,0 +1,46 @@
+pipeline {
+    agent any
+    environment {
+        DOCKERHUB_CREDS = credentials('creds_docker')
+    }
+    tools{
+    maven 'maven'
+    }
+    stages {
+
+
+        stage('Checkout GIT') {
+            steps {
+            echo 'Checkout GIT'
+            checkout([$class: 'GitSCM', branches: [[name: '*/dev']], extensions: [], userRemoteConfigs: [[credentialsId: 'git-cred', url: 'https://github.com/kastourik12/Cashin-backend-microservices']]])
+            }
+        }
+        stage('Build & push') {
+            steps {
+                echo 'test images'
+
+
+                echo 'Building..'
+
+
+                withCredentials([usernamePassword(credentialsId: 'creds_docker', passwordVariable: 'DOCKER_REGISTRY_PWD', usernameVariable: 'DOCKER_REGISTRY_USER')]) {
+                            sh 'mvn clean install -P build-docker-image'
+                            sh 'docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PWD'
+
+                }
+            }
+        }
+
+
+        stage('Scan') {
+            steps {
+                echo 'Scanning..'
+               // snykSecurity severity: 'high', snykInstallation: 'snyk', snykTokenId: 'snyk_token'
+                snykSecurity failOnIssues: false, snykInstallation: 'snyk', snykTokenId: 'snyk_token'
+                echo 'Scan done'
+            }
+        }
+
+
+    }
+    }

@@ -1,0 +1,15 @@
+com/kastourik12/clients/notification/NotificationEmail.class
+com/kastourik12/clients/paymentAPI/PaymentBalanceHandler.class
+com/kastourik12/clients/paymentAPI/PaymentDTO.class
+com/kastourik12/clients/transactions/TransactionRequest$TransactionRequestBuilder.class
+com/kastourik12/clients/notification/NotificationEmail$NotificationEmailBuilder.class
+com/kastourik12/clients/users/UserDTO.class
+com/kastourik12/clients/clients/ClientDTO.class
+com/kastourik12/clients/paymentAPI/PaymentCreationResponse.class
+com/kastourik12/clients/transactions/TransactionRequest.class
+com/kastourik12/clients/paymentAPI/PaymentDTO$PaymentDTOBuilder.class
+com/kastourik12/clients/users/UserDTO$UserDTOBuilder.class
+com/kastourik12/clients/notification/NotificationRequest.class
+com/kastourik12/clients/transactions/TransactionPayload.class
+com/kastourik12/clients/notification/NotificationRequest$NotificationRequestBuilder.class
+com/kastourik12/clients/paymentAPI/PayPalPaymentRequest.class

@@ -1,0 +1,10 @@
+/home/kastouri/Desktop/Cashin-backend-microservices/shared-package/src/main/java/com/kastourik12/clients/paymentAPI/PayPalPaymentRequest.java
+/home/kastouri/Desktop/Cashin-backend-microservices/shared-package/src/main/java/com/kastourik12/clients/clients/ClientDTO.java
+/home/kastouri/Desktop/Cashin-backend-microservices/shared-package/src/main/java/com/kastourik12/clients/notification/NotificationEmail.java
+/home/kastouri/Desktop/Cashin-backend-microservices/shared-package/src/main/java/com/kastourik12/clients/paymentAPI/PaymentBalanceHandler.java
+/home/kastouri/Desktop/Cashin-backend-microservices/shared-package/src/main/java/com/kastourik12/clients/paymentAPI/PaymentCreationResponse.java
+/home/kastouri/Desktop/Cashin-backend-microservices/shared-package/src/main/java/com/kastourik12/clients/transactions/TransactionRequest.java
+/home/kastouri/Desktop/Cashin-backend-microservices/shared-package/src/main/java/com/kastourik12/clients/paymentAPI/PaymentDTO.java
+/home/kastouri/Desktop/Cashin-backend-microservices/shared-package/src/main/java/com/kastourik12/clients/notification/NotificationRequest.java
+/home/kastouri/Desktop/Cashin-backend-microservices/shared-package/src/main/java/com/kastourik12/clients/transactions/TransactionPayload.java
+/home/kastouri/Desktop/Cashin-backend-microservices/shared-package/src/main/java/com/kastourik12/clients/users/UserDTO.java

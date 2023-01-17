@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-api
+  labels:
+    app: go-api
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: go-api
+      labels:
+        app: go-api
+    spec:
+      containers:
+        - name: go-api
+          image: kastourik12/go-api:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+           - containerPort: 9090
+          envFrom:
+            - secretRef:
+                name: go-api-secret
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: go-api

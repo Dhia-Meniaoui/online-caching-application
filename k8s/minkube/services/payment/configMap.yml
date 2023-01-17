@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: payments-config
+data:
+  SPRING_PROFILES_ACTIVE: kube
+  POSTGRES_DB: payments
+  POSTGRES_HOST: postgres
+  POSTGRES_PORT: "5432"
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: root
+  GO_API_HOST: go-api
+
+

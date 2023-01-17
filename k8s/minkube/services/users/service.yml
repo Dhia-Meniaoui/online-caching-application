@@ -1,0 +1,15 @@
+<<<<<<< HEAD
+8084apiVersion: v1
+=======
+apiVersion: v1
+>>>>>>> 0ee7b178481e15f7b7c8b58e0ef798f37b68962a
+kind: Service
+metadata:
+  name: users
+spec:
+  selector:
+    app: users
+  ports:
+    - port: 80
+      targetPort: 8081
+  type: LoadBalancer

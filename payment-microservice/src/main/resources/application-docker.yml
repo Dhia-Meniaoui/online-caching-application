@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:postgresdb}:${POSTGRES_PORT:5432}/${POSTGRES_DB:payments}
+    username: ${POSTGRES_USER:root}
+    password: ${POSTGRES_PASSWORD:root}
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  zipkin:
+    base-url: http://zipkin:9411
+go:
+  api:
+    host: ${GO_API_HOST:localhost}
+    port: ${GO_API_PORT:9090}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:8761/eureka
+    enabled: false
+rabbitmq:
+  exchanges:
+    notification: notification.exchange
+  routing-keys:
+    notification: notification.routing-key

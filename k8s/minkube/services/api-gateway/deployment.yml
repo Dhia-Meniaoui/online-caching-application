@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apigateway
+  labels:
+    app: apigateway
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: apigateway
+      labels:
+        app: apigateway
+    spec:
+      containers:
+        - name: apigateway
+          image: kastourik12/apigateway:latest
+          ports:
+           - containerPort: 8222
+          envFrom:
+            - configMapRef:
+                name: apigateway-config
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: apigateway

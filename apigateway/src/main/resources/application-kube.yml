@@ -1,0 +1,105 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka:8761/eureka/
+<<<<<<< HEAD
+=======
+    enabled: false
+>>>>>>> 0ee7b178481e15f7b7c8b58e0ef798f37b68962a
+spring:
+  zipkin:
+    base-url: http://zipkin:9411
+  cloud:
+    gateway:
+      routes:
+        - id: users
+          uri: lb://users
+          predicates:
+            - Path=/auth/*,
+            - Method=GET,POST,PUT,DELETE,OPTIONS
+        - id: transactionCreation
+          uri: lb://users
+          predicates:
+            - Path=/send/*,
+            - Method=GET,POST,PUT,DELETE,OPTIONS
+          filters:
+            - AuthFilter
+        - id: payment
+          uri: lb://payment
+          predicates:
+            - Path=/payment/*
+            - Method=GET,POST,PUT,DELETE,OPTIONS
+          filters:
+            - AuthFilter
+        - id: notification
+          uri: lb://notification
+          predicates:
+            - Path=/notif/*
+            - Method=GET,POST,PUT,DELETE,OPTIONS
+          filters:
+            - AuthFilter
+        - id: transaction
+          uri: lb://transaction
+          predicates:
+            - Path=/transaction/**
+            - Method=GET,OPTIONS
+          filters:
+            - AuthFilter
+        - id: clients
+          uri: lb://clients
+          predicates:
+            - Path=/client/**
+            - Method=GET,POST,PUT,DELETE,OPTIONS
+          filters:
+            - AuthFilter
+        - id: clientAuth
+          uri: lb://clients
+          predicates:
+            - Path=/client-auth/**
+            - Method=GET,POST,PUT,DELETE,OPTIONS
+        - id: products
+          uri: lb://products
+          predicates:
+            - Path=/product/**,/category/**
+            - Method=GET,POST,PUT,DELETE,OPTIONS
+          filters:
+            - AuthFilter
+        - id: productFromClient
+          uri: lb://products
+          predicates:
+            - Path=/order/**,/client-product/**
+            - Method=GET,POST,PUT,DELETE,OPTIONS
+          filters:
+            - ClientFilter
+
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders:
+              - x-requested-with
+              - Authorization
+              - Content-Type
+              - Content-Length
+              - Authorization
+              - credential
+              - X-XSRF-TOKEN
+              - Accept
+              - Referer
+              - refreshToken
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - PATCH
+              - OPTIONS
+
+
+
+client:
+  instancesUri:
+    users: http://users:8081/auth/
+
+
+

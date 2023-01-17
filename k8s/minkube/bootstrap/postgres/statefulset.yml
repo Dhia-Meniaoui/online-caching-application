@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+  labels:
+    app: postgres
+spec:
+  serviceName: postgres
+  replicas: 1
+  template:
+    metadata:
+      name: postgres
+      labels:
+        app: postgres
+    spec:
+      volumes:
+        - name: postgres
+          persistentVolumeClaim:
+            claimName: postgres-pvc
+      containers:
+        - name: postgres
+          image: postgres:13.1-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+              name: postgres
+          envFrom:
+            - configMapRef:
+                name: postgres-configmap
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgres
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 200m
+              memory: 400Mi
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: postgres
+# kubectl exec -it postgres-0 -- psql -U postgres : for open postgres shell inside the pod

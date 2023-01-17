@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eureka
+  labels:
+    app: eureka
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: eureka
+      labels:
+        app: eureka
+    spec:
+      containers:
+        - name: eureka
+          image: kastourik12/notification:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+           - containerPort: 8761
+          envFrom:
+            - configMapRef:
+                name: eureka-config
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: eureka

@@ -1,0 +1,61 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka:8761/eureka/
+spring:
+  zipkin:
+    base-url: http://zipkin:9411
+  cloud:
+    gateway:
+      routes:
+      - id: users
+        uri: lb://users
+        predicates:
+          - Path=/auth/*
+          - Method=GET,POST,PUT,DELETE,OPTIONS
+      - id: payment
+        uri: lb://payment
+        predicates:
+          - Path=/payment/*
+          - Method=GET,POST,PUT,DELETE,OPTIONS
+        filters:
+          - AuthFilter
+
+      - id: transaction
+        uri: lb://transaction
+        predicates:
+          - Path=/transaction/*
+          - Method=GET,POST,PUT,DELETE,OPTIONS
+        filters:
+          - AuthFilter
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders:
+              - x-requested-with
+              - Authorization
+              - Content-Type
+              - Content-Length
+              - Authorization
+              - credential
+              - X-XSRF-TOKEN
+              - Acccept
+              - Referer
+              - refreshToken
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - PATCH
+              - OPTIONS
+
+
+
+client:
+  instancesUri:
+    users: http://users:8081/auth/
+
+
+

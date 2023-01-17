@@ -1,0 +1,35 @@
+spring:
+  zipkin:
+    base-url: http://zipkin:9411
+  rabbitmq:
+<<<<<<< HEAD
+    addresses: rabbits.rabbitmq:5672
+=======
+    addresses: rabbitmq:5672
+>>>>>>> 0ee7b178481e15f7b7c8b58e0ef798f37b68962a
+  mail:
+    protocol: smtp
+    host: smtp.mailtrap.io
+    port: 2525
+    username: a21f2f1308ac72
+    password: c4a7231f34f319
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb+srv://test:}
+      database: notification
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+    enabled: false
+rabbitmq:
+  exchanges:
+    notification: notification.exchange
+  queues:
+    notification: notification.queue
+    email: email.queue
+  routing-keys:
+    notification: notification.routing-key
+    email: email.routing-key

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clients
+  labels:
+    app: clients
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: clients
+      labels:
+        app: clients
+    spec:
+      containers:
+        - name: clients
+          image: kastourik12/notification:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+           - containerPort: 8088
+          envFrom:
+            - configMapRef:
+                name: clients-config
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: clients

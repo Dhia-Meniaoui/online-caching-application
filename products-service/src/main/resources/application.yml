@@ -1,0 +1,24 @@
+spring:
+  zipkin:
+    base-url: http://localhost:9411
+  rabbitmq:
+    addresses: localhost:5672
+  data:
+    mongodb:
+      uri: mongodb+srv://root:root@cluster0.yuincts.mongodb.net/?retryWrites=true&w=majority
+      database: products
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+
+rabbitmq:
+  exchanges:
+    products: products.exchange
+  queues:
+    products: products.queue
+    email: email.queue
+  routing-keys:
+    products: products.routing-key
+    email: email.routing-key

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payments
+  labels:
+    app: payments
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: payments
+      labels:
+        app: payments
+    spec:
+      containers:
+        - name: payments
+          image: kastourik12/payment-microservice:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+           - containerPort: 8083
+          envFrom:
+            - configMapRef:
+                name: payments-config
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: payments

@@ -1,0 +1,22 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: transaction
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:postgres}:${POSTGRES_PORT:5432}/${POSTGRES_DB:transactions}
+    username: ${POSTGRES_USER:root}
+    password: ${POSTGRES_PASSWORD:root}
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  zipkin:
+    base-url: http://zipkin:9411
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:8761/eureka/
+    enabled: false

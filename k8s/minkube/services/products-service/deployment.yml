@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: products
+  labels:
+    app: products
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: products
+      labels:
+        app: products
+    spec:
+      containers:
+        - name: products
+          image: kastourik12/notification:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+           - containerPort: 8085
+          envFrom:
+            - configMapRef:
+                name: products-config
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: products

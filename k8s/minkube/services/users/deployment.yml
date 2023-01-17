@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users
+  labels:
+    app: users
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: users
+      labels:
+        app: users
+    spec:
+      containers:
+        - name: users
+          image: kastourik12/users-service:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+           - containerPort: 8081
+          envFrom:
+            - configMapRef:
+                name: users-config
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: users
